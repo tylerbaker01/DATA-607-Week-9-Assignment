@@ -1,0 +1,24 @@
+---
+title: "Week9Assignment"
+author: "Tyler Baker"
+date: "10/24/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(httr)
+library(jsonlite)
+```
+
+The goal of this week's assignment is to get practice using an API. I wanted to look at recent movies. 
+
+```{r}
+res <- GET("https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=r3uz0WM43M17EmziwdtqT9UCmgy3hShu")
+
+raw <- jsonlite::fromJSON(unlist(rawToChar(res$content)))
+
+movie_df<- data.frame(raw$results)
+```
+
+In conclusion, even though I fulfilled the assignment I really need to practice some more with using API's.
